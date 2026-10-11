@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedTracker — Méditerranée française</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">≋</span>
+      <div>
+        <h1>MedTracker</h1>
+        <p class="subtitle">Tableau de bord de la Méditerranée française</p>
+      </div>
+    </div>
+
+    <div class="timebar" title="Date appliquée aux couches satellite et Copernicus">
+      <button id="date-prev" class="btn icon" aria-label="Jour précédent">‹</button>
+      <input type="date" id="date-input" aria-label="Date d'affichage">
+      <button id="date-next" class="btn icon" aria-label="Jour suivant">›</button>
+      <button id="date-today" class="btn">Aujourd'hui</button>
+    </div>
+
+    <div class="topbar-right">
+      <div class="clock">
+        <span id="clock-local">--:--</span>
+        <small id="clock-utc">UTC --:--</small>
+      </div>
+      <div class="last-update">Mise à jour&nbsp;: <span id="last-update">—</span></div>
+      <button id="refresh" class="btn primary">Actualiser</button>
+    </div>
+  </header>
+
+  <section class="kpis" id="kpis" aria-label="Indicateurs clés"></section>
+
+  <main>
+    <section class="map-wrap">
+      <aside class="layer-panel" id="layer-panel">
+        <div class="layer-panel-head">
+          <strong>Couches</strong>
+          <button class="btn icon small" id="layer-panel-toggle" aria-label="Replier">–</button>
+        </div>
+        <div class="layer-panel-body" id="layer-list"></div>
+      </aside>
+      <div id="map"></div>
+      <div class="map-date-badge" id="map-date-badge"></div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-2" id="panel-sst">
+        <header><h2>Température de la mer</h2><span class="tag" id="sst-tag"></span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card" id="panel-weather">
+        <header><h2>Météo marine</h2><span class="tag">Open-Meteo</span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card span-2" id="panel-climate">
+        <header><h2>Évolution long terme &amp; vagues de chaleur marines</h2><span class="tag" id="climate-tag"></span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card" id="panel-ais">
+        <header><h2>Trafic maritime</h2><span class="tag" id="ais-tag">AIS</span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card span-2" id="panel-biodiv">
+        <header><h2>Faune &amp; flore</h2><span class="tag">GBIF · iNaturalist</span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card" id="panel-news">
+        <header><h2>Actualités</h2><span class="tag" id="news-tag"></span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card span-2" id="panel-status">
+        <header><h2>État des sources</h2><span class="tag" id="status-tag"></span></header>
+        <div class="card-body"></div>
+      </article>
+
+      <article class="card" id="panel-links">
+        <header><h2>Liens utiles</h2></header>
+        <div class="card-body"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    MedTracker — prototype de veille personnelle. Données&nbsp;: Open-Meteo, Copernicus Marine, NASA GIBS, EMODnet,
+    IGN Géoplateforme, Cerema, GBIF, iNaturalist, OpenStreetMap, OpenSeaMap, CARTO. Les données de modèles
+    ne remplacent pas les bulletins officiels (Météo-France, Préfecture maritime).
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Configuration personnelle (clés d'API). Copier js/config.example.js en js/config.js. -->
+  <script src="js/config.example.js"></script>
+  <script src="js/config.js" onerror="void 0"></script>
+  <script src="js/util.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/status.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/layers.js"></script>
+  <script src="js/panels/sst.js"></script>
+  <script src="js/panels/weather.js"></script>
+  <script src="js/panels/climate.js"></script>
+  <script src="js/panels/ais.js"></script>
+  <script src="js/panels/biodiv.js"></script>
+  <script src="js/panels/news.js"></script>
+  <script src="js/panels/links.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
