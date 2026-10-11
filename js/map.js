@@ -15,15 +15,24 @@
     L.control.zoom({ position: 'topright' }).addTo(map);
     L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
 
+    // Libellés du fond clair au-dessus des couches thématiques, sans capter les clics.
+    map.createPane('labels').style.zIndex = 450;
+    map.getPane('labels').style.pointerEvents = 'none';
+
     const geopf = (layer, fmt) =>
       'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&STYLE=normal&TILEMATRIXSET=PM' +
       `&LAYER=${layer}&FORMAT=${fmt}&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}`;
 
     const bases = {
-      'Clair (CARTO)': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd', maxZoom: 19,
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>'
-      }),
+      // Fond clair Esri (gratuit, sans clé) : fond gris + couche de libellés séparée.
+      'Clair (Esri)': L.layerGroup([
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 16, attribution: 'Fond © <a href="https://www.esri.com/">Esri</a>, HERE, Garmin, © OpenStreetMap'
+        }),
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 16, pane: 'labels'
+        })
+      ]),
       'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }),
@@ -38,7 +47,7 @@
       })
     };
     const savedBase = MT.store.get('base');
-    (bases[savedBase] || bases['Clair (CARTO)']).addTo(map);
+    (bases[savedBase] || bases['Clair (Esri)']).addTo(map);
     L.control.layers(bases, null, { position: 'topright' }).addTo(map);
     map.on('baselayerchange', (e) => MT.store.set('base', e.name));
 

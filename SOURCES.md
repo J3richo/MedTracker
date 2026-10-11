@@ -35,7 +35,7 @@ Dans tous les cas, le panneau « État des sources » donne le résultat réel d
 | Trafic AIS (panneau) | VesselFinder, carte intégrée gratuite | temps réel | non | conditions VesselFinder | À tester |
 | Trafic AIS (carte) | AISStream.io WebSocket | temps réel | **oui (gratuite)** | conditions AISStream | À tester |
 | Actualités | Google Actualités RSS, lu via un relais CORS public | continu | non | — | À tester |
-| Fonds de carte | CARTO Positron, OpenStreetMap, IGN (Plan IGN v2, cartes littorales SHOM/IGN, photographies aériennes) | — | non | ODbL / Etalab | Doc |
+| Fonds de carte | Esri Light Gray Canvas, OpenStreetMap, IGN (Plan IGN v2, cartes littorales SHOM/IGN, photographies aériennes) | — | non | ODbL / Etalab | Doc |
 
 ## Repérées, non intégrées (pas d'accès machine, ou accès nécessitant un relais)
 

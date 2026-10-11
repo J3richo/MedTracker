@@ -52,7 +52,7 @@
   });
 
   MT.addLayer({
-    id: 'gibs-ssta', group: 'ocean', name: 'Anomalie de température — satellite', short: 'Anomalie SST', default: true,
+    id: 'gibs-ssta', group: 'ocean', name: 'Anomalie de température — satellite', short: 'Anomalie SST',
     type: 'wms', url: GIBS_WMS, time: 'gibs', opacity: 0.7,
     params: { layers: 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies' },
     alt: { type: 'wms', url: GIBS_WMS, params: { layers: 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies_v4.1_STD' } },
